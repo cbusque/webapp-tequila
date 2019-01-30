@@ -5,6 +5,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
+var page = 0;
 const styles = theme => ({
   root: {
     display: "flex",
@@ -113,7 +114,12 @@ function AppChoice(props) {
               .get(
                 "http://localhost:3001/api/actions/action?action=" + image.title
               )
-              .then(console.log("DONE"));
+              .then(console.log("DONE"))
+              .then(page++);
+            if (page >= 8) {
+              window.location.reload();
+              page = 0;
+            }
           }}
           focusRipple
           key={image.title}
