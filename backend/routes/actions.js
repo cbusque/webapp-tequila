@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const db = require("./../lib/db");
+var fs = require("fs");
+
+var lions = 0;
+var cenne = 0;
+var AI = 0;
 
 // Gets all the products in the database.
 router.get("/", (req, res) => {
@@ -12,12 +17,32 @@ router.get("/:id", (req, res) => {
   var action = req.query.action;
   console.log(action);
   switch (action) {
-    case "lion":
-      console.log("should get number of vote for action");
+    case "Relacher les lions":
+      lions++;
+      console.log("lions : " + lions + "/5");
+      if (lions >= 5) {
+        console.log("Relacher les lions");
+        lions = 0;
+      }
       break;
-    case "money":
+    case "Faire tomber une cenne":
+      cenne++;
+      console.log("cenne : " + cenne + "/5");
+      if (cenne >= 5) {
+        console.log("Faire tomber une cenne");
+        cenne = 0;
+      }
       break;
-    case "AI":
+    case "Ajouter un AI":
+      AI++;
+      console.log("AI : " + AI + "/5");
+      if (AI >= 5) {
+        console.log("Ajouter un AI");
+        AI = 0;
+      }
+      break;
+    default:
+      console.log("invalid");
       break;
   }
 });
