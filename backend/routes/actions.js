@@ -15,7 +15,6 @@ router.get("/", (req, res) => {
 // Gets the product associated with the specified ID.
 router.get("/:id", (req, res) => {
   var action = req.query.action;
-  console.log(action);
   switch (action) {
     case "Relacher les lions":
       lions++;
