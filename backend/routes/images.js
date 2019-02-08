@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const db = require("./../lib/db");
+const db = require("../lib/db");
 var states = require("../public/javascripts/states");
-
-var lions = 0;
-var cenne = 0;
-var AI = 0;
+fs = require("fs");
 
 // Gets all the products in the database.
 router.get("/", (req, res) => {
@@ -13,41 +10,33 @@ router.get("/", (req, res) => {
 });
 
 // Gets the product associated with the specified ID.
+// get images for button on frontend
 router.get("/:id", (req, res) => {
-  var action = req.query.action;
-  states.currentState = states.STATES.ACT1;
+  var image = req.query.image;
+  console.log(image);
   console.log(states.currentState);
-  switch (action) {
-    case "Relacher les lions":
-      lions++;
-      console.log("lions : " + lions + "/5");
-      if (lions >= 5) {
-        console.log("Relacher les lions");
-        lions = 0;
-      }
+  switch (image) {
+    case "lions":
+      var img = fs.readFileSync("./public/images/lions.jpg");
+      res.writeHead(200, { "Content-Type": "image/gif" });
+      res.end(img, "binary");
       break;
-    case "Faire tomber une cenne":
-      cenne++;
-      console.log("cenne : " + cenne + "/5");
-      if (cenne >= 5) {
-        console.log("Faire tomber une cenne");
-        cenne = 0;
-      }
+    case "ai":
+      var img = fs.readFileSync("./public/images/ai.jpg");
+      res.writeHead(200, { "Content-Type": "image/gif" });
+      res.end(img, "binary");
       break;
-    case "Ajouter un AI":
-      AI++;
-      console.log("AI : " + AI + "/5");
-      if (AI >= 5) {
-        console.log("Ajouter un AI");
-        AI = 0;
-      }
+    case "money":
+      var img = fs.readFileSync("./public/images/money.jpg");
+      res.writeHead(200, { "Content-Type": "image/gif" });
+      res.end(img, "binary");
       break;
     default:
       console.log("invalid");
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end();
       break;
   }
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end();
 });
 
 // Adds a new product in the database.

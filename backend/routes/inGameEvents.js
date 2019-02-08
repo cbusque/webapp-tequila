@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("./../lib/db");
-var states = require("../public/javascripts/states");
+const db = require("../lib/db");
 
 var lions = 0;
 var cenne = 0;
@@ -15,8 +14,6 @@ router.get("/", (req, res) => {
 // Gets the product associated with the specified ID.
 router.get("/:id", (req, res) => {
   var action = req.query.action;
-  states.currentState = states.STATES.ACT1;
-  console.log(states.currentState);
   switch (action) {
     case "Relacher les lions":
       lions++;

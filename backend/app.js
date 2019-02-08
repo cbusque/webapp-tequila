@@ -6,7 +6,10 @@ const path = require("path");
 const session = require("express-session");
 
 require("./lib/db");
+const images = require("./routes/images");
 const actions = require("./routes/actions");
+const inGameEvents = require("./routes/inGameEvents");
+const options = require("./routes/options");
 
 const app = express();
 
@@ -45,6 +48,9 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/actions", actions);
+app.use("/api/inGameEvents", inGameEvents);
+//app.use("/api/images", images);
+app.use("/api/options", options);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
