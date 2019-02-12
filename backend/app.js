@@ -49,7 +49,6 @@ app.use((req, res, next) => {
 
 app.use("/api/actions", actions);
 app.use("/api/inGameEvents", inGameEvents);
-//app.use("/api/images", images);
 app.use("/api/options", options);
 
 // catch 404 and forward to error handler

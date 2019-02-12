@@ -1,45 +1,70 @@
 const express = require("express");
 const router = express.Router();
 const db = require("./../lib/db");
-var states = require("../public/javascripts/states");
-
-var lions = 0;
-var cenne = 0;
-var AI = 0;
+var gb = require("../public/javascripts/globalVariable");
 
 // Gets all the products in the database.
 router.get("/", (req, res) => {
   console.log("missing path");
 });
 
-// Gets the product associated with the specified ID.
+// get le nbr de vote
 router.get("/:id", (req, res) => {
   var action = req.query.action;
-  states.currentState = states.STATES.ACT1;
-  console.log(states.currentState);
+  res.writeHead(200, { "Content-Type": "text/plain" });
   switch (action) {
-    case "Relacher les lions":
-      lions++;
-      console.log("lions : " + lions + "/5");
-      if (lions >= 5) {
-        console.log("Relacher les lions");
-        lions = 0;
+    case "lions":
+      res.end(gb.voteForLions);
+      break;
+    case "water":
+      res.end(gb.voteForWater);
+      break;
+    case "cheese":
+      res.end(gb.voteForCheese);
+      break;
+    case "trap":
+      res.end(gb.voteForTrap);
+      break;
+    default:
+      console.log("invalid");
+      res.end("Invalid");
+      break;
+  }
+});
+// Gets the product associated with the specified ID.
+router.post("/:id", (req, res) => {
+  var action = req.query.action;
+  switch (action) {
+    case "lions":
+      gb.voteForLions++;
+      console.log("lions : " + gb.voteForLions + "/5");
+      if (gb.voteForLions >= 5) {
+        console.log("lions");
+        gb.voteForLions = 0;
       }
       break;
-    case "Faire tomber une cenne":
-      cenne++;
-      console.log("cenne : " + cenne + "/5");
-      if (cenne >= 5) {
-        console.log("Faire tomber une cenne");
-        cenne = 0;
+    case "water":
+      gb.voteForWater++;
+      console.log("water : " + gb.voteForWater + "/5");
+      if (gb.voteForWater >= 5) {
+        console.log("water");
+        gb.voteForWater = 0;
       }
       break;
-    case "Ajouter un AI":
-      AI++;
-      console.log("AI : " + AI + "/5");
-      if (AI >= 5) {
+    case "cheese":
+      gb.voteForCheese++;
+      console.log("cheese : " + gb.voteForCheese + "/5");
+      if (gb.voteForCheese >= 5) {
         console.log("Ajouter un AI");
-        AI = 0;
+        gb.voteForCheese = 0;
+      }
+      break;
+    case "trap":
+      gb.voteForTrap++;
+      console.log("trap : " + gb.voteForTrap + "/5");
+      if (gb.voteForTrap >= 5) {
+        console.log("Ajouter une trap");
+        gb.voteForTrap = 0;
       }
       break;
     default:
@@ -49,16 +74,5 @@ router.get("/:id", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   res.end();
 });
-
-// Adds a new product in the database.
-router.post("/", (req, res) => {
-  console.log("fail");
-});
-
-// Deletes the product associated with the specified ID in the database.
-router.delete("/:id", (req, res) => {});
-
-// Deletes all the products in the database.
-router.delete("/", (req, res) => {});
 
 module.exports = router;

@@ -6,8 +6,10 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 import image_lions from "../../static/images/lion.jpg";
+import image_trap from "../../static/images/trap.png";
+import image_water from "../../static/images/water.png";
+import image_cheese from "../../static/images/cheese.png";
 
-var page = 0;
 const styles = theme => ({
   root: {
     display: "flex",
@@ -82,23 +84,40 @@ const styles = theme => ({
   }
 });
 
-const imagesAct1 = [
+const not_started = [
   {
     url: image_lions,
-    title: "Relacher les lions",
+    title: "lions",
     width: "20%"
   },
   {
-    url: image_lions,
-    title: "Faire tomber une cenne",
+    url: image_water,
+    title: "water",
     width: "30%"
   }
 ];
 
+const imagesAct1 = [
+  {
+    url: image_lions,
+    title: "lions",
+    width: "30%"
+  },
+  {
+    url: image_cheese,
+    title: "cheese",
+    width: "30%"
+  }
+];
 const imagesAct2 = [
   {
     url: image_lions,
-    title: "Ajouter un AI",
+    title: "lions",
+    width: "30%"
+  },
+  {
+    url: image_trap,
+    title: "trap",
     width: "30%"
   }
 ];
@@ -109,17 +128,22 @@ function AppChoice(props) {
   const [imageChoice, setActImages] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/options").then(Response => {
-      console.log(Response.data);
-      switch (Response.data) {
-        case "not_started":
-          setActImages(imagesAct1);
-          break;
-        case "act1":
-          setActImages(imagesAct2);
-          break;
-      }
-    });
+    setInterval(async () => {
+      axios.get("http://localhost:3001/api/options").then(Response => {
+        console.log(Response.data);
+        switch (Response.data) {
+          case "not_started":
+            setActImages(not_started);
+            break;
+          case "act1":
+            setActImages(imagesAct1);
+            break;
+          case "act2":
+            setActImages(imagesAct2);
+            break;
+        }
+      });
+    }, 5000);
   }, []);
 
   return (
@@ -128,16 +152,13 @@ function AppChoice(props) {
         <ButtonBase
           onClick={() => {
             console.log("onClick");
+
             axios
-              .get(
+              .post(
                 "http://localhost:3001/api/actions/action?action=" + image.title
               )
-              .then(console.log("DONE"))
-              .then(page++);
-            if (page >= 8) {
-              window.location.reload();
-              page = 0;
-            }
+              .then(console.log("DONE"));
+            //disable button and maybe higlight the button
           }}
           focusRipple
           key={image.title}
@@ -170,57 +191,6 @@ function AppChoice(props) {
     </div>
   );
 }
-// function AppChoice(props) {
-//   const { classes } = props;
-
-//   return (
-//     <div className={classes.root}>
-//       {imagesAct1.map(image => (
-//         <ButtonBase
-//           onClick={() => {
-//             console.log("onClick");
-//             axios
-//               .get(
-//                 "http://localhost:3001/api/actions/action?action=" + image.title
-//               )
-//               .then(console.log("DONE"))
-//               .then(page++);
-//             if (page >= 8) {
-//               window.location.reload();
-//               page = 0;
-//             }
-//           }}
-//           focusRipple
-//           key={image.title}
-//           className={classes.image}
-//           focusVisibleClassName={classes.focusVisible}
-//           style={{
-//             width: image.width
-//           }}
-//         >
-//           <span
-//             className={classes.imageSrc}
-//             style={{
-//               backgroundImage: `url(${image.url})`
-//             }}
-//           />
-//           <span className={classes.imageBackdrop} />
-//           <span className={classes.imageButton}>
-//             <Typography
-//               component="span"
-//               variant="subtitle1"
-//               color="inherit"
-//               className={classes.imageTitle}
-//             >
-//               {image.title}
-//               <span className={classes.imageMarked} />
-//             </Typography>
-//           </span>
-//         </ButtonBase>
-//       ))}
-//     </div>
-//   );
-// }
 
 AppChoice.propTypes = {
   classes: PropTypes.object.isRequired

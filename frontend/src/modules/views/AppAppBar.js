@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "../components/AppBar";
@@ -7,6 +7,8 @@ import compose from "recompose/compose";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import ReactCountdownClock from "react-countdown-clock";
+import axios from "axios";
 
 const styles = theme => ({
   margin: {
@@ -14,11 +16,27 @@ const styles = theme => ({
   },
   title: {
     fontSize: 24
+  },
+  left: {
+    flex: 1
   }
 });
 
+
+
 function AppAppBar(props) {
   const { classes } = props;
+  const [timer, setTimer] = useState([]);
+  const [hideHack, sethideHack] = useState([]);
+  useEffect(() => {
+    setInterval(async () => {
+      axios.get("http://localhost:3001/api/options").then(Response => {
+        sethideHack(0.9);
+        setTimer(2);
+      });
+    }, 1000);
+  }, []);
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -30,9 +48,16 @@ function AppAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" className={classes.left}>
             Téquila
           </Typography>
+          <ReactCountdownClock
+            seconds={timer}
+            color="#fff5f8"
+            alpha={hideHack}
+            size={50}
+            onComplete={}
+          />
         </Toolbar>
       </AppBar>
     </div>

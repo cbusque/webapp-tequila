@@ -1,50 +1,30 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../lib/db");
-
-var lions = 0;
-var cenne = 0;
-var AI = 0;
+var globalVariable = require("../public/javascripts/globalVariable");
 
 // Gets all the products in the database.
-router.get("/", (req, res) => {
-  console.log("missing path");
-});
+router.get("/", (req, res) => {});
 
-// Gets the product associated with the specified ID.
-router.get("/:id", (req, res) => {
-  var action = req.query.action;
-  switch (action) {
-    case "Relacher les lions":
-      lions++;
-      console.log("lions : " + lions + "/5");
-      if (lions >= 5) {
-        console.log("Relacher les lions");
-        lions = 0;
-      }
-      break;
-    case "Faire tomber une cenne":
-      cenne++;
-      console.log("cenne : " + cenne + "/5");
-      if (cenne >= 5) {
-        console.log("Faire tomber une cenne");
-        cenne = 0;
-      }
-      break;
-    case "Ajouter un AI":
-      AI++;
-      console.log("AI : " + AI + "/5");
-      if (AI >= 5) {
-        console.log("Ajouter un AI");
-        AI = 0;
-      }
-      break;
-    default:
-      console.log("invalid");
-      break;
+// post the game
+router.post("/:id", (req, res) => {
+  var state = req.query.state;
+  globalVariable.currentState = state;
+  //var init
+  globalVariable.voteForCheese = 0;
+  globalVariable.voteForWater = 0;
+  globalVariable.voteForTrap = 0;
+  globalVariable.voteForLions = 0;
+
+  var time = req.query.timer;
+  if (time > 0) {
+    globalVariable.timer = time;
   }
+
+  console.log("current state : " + globalVariable.currentState);
+  console.log("timer set to  : " + globalVariable.timer);
   res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end();
+  res.send();
 });
 
 // Adds a new product in the database.

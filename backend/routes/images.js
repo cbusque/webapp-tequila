@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../lib/db");
-var states = require("../public/javascripts/states");
+var states = require("../public/javascripts/globalVariable");
 fs = require("fs");
 
 // Gets all the products in the database.
