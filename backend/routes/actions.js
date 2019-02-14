@@ -14,16 +14,16 @@ router.get("/:id", (req, res) => {
   res.writeHead(200, { "Content-Type": "text/plain" });
   switch (action) {
     case "lions":
-      res.end(gb.voteForLions);
+      res.end(gb.voteForLions.toString());
       break;
     case "water":
-      res.end(gb.voteForWater);
+      res.end(gb.voteForWater.toString());
       break;
     case "cheese":
-      res.end(gb.voteForCheese);
+      res.end(gb.voteForCheese.toString());
       break;
     case "trap":
-      res.end(gb.voteForTrap);
+      res.end(gb.voteForTrap.toString());
       break;
     default:
       console.log("invalid");

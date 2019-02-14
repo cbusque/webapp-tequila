@@ -22,18 +22,24 @@ const styles = theme => ({
   }
 });
 
-
-
 function AppAppBar(props) {
   const { classes } = props;
-  const [timer, setTimer] = useState([]);
-  const [hideHack, sethideHack] = useState([]);
+  const [timer, setTimer] = useState(13);
+  const [showLoading, setShowLoading] = useState(0.0);
   useEffect(() => {
-    setInterval(async () => {
-      axios.get("http://localhost:3001/api/options").then(Response => {
-        sethideHack(0.9);
-        setTimer(2);
-      });
+    var localTimer = 0;
+    axios.get("http://localhost:3001/api/options").then(Response => {
+      setTimeout(() => setShowLoading(0.0));
+      setTimer(20);
+      localTimer = 20;
+    });
+    var timerInterval = setInterval(async () => {
+      localTimer = localTimer - 1;
+      if (localTimer < 15) {
+        setTimer(15);
+        setTimeout(() => setShowLoading(0.9));
+        clearInterval(timerInterval);
+      }
     }, 1000);
   }, []);
 
@@ -54,9 +60,11 @@ function AppAppBar(props) {
           <ReactCountdownClock
             seconds={timer}
             color="#fff5f8"
-            alpha={hideHack}
+            alpha={showLoading}
             size={50}
-            onComplete={}
+            onComplete={() => {
+              console.log("timer finished");
+            }}
           />
         </Toolbar>
       </AppBar>
