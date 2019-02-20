@@ -10,6 +10,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ReactCountdownClock from "react-countdown-clock";
 import axios from "axios";
 
+import server from "../../public/server";
+
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit
@@ -28,7 +30,8 @@ function AppAppBar(props) {
   const [showLoading, setShowLoading] = useState(0.0);
   useEffect(() => {
     var localTimer = 0;
-    axios.get("http://localhost:3001/api/options").then(Response => {
+    //should be get timer
+    axios.get("http://" + server.ip + ":3001/api/options").then(Response => {
       setTimeout(() => setShowLoading(0.0));
       setTimer(20);
       localTimer = 20;

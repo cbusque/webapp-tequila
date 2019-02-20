@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Iframe from "react-iframe";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
@@ -9,6 +10,8 @@ import image_lions from "../../static/images/lion.jpg";
 import image_trap from "../../static/images/trap.png";
 import image_water from "../../static/images/water.png";
 import image_cheese from "../../static/images/cheese.png";
+
+import server from "../../public/server";
 
 const styles = theme => ({
   root: {
@@ -84,7 +87,7 @@ const styles = theme => ({
   }
 });
 
-const not_started = [
+const round_1 = [
   {
     url: image_lions,
     title: "lions",
@@ -97,7 +100,7 @@ const not_started = [
   }
 ];
 
-const imagesAct1 = [
+const round_2 = [
   {
     url: image_lions,
     title: "lions",
@@ -109,7 +112,7 @@ const imagesAct1 = [
     width: "30%"
   }
 ];
-const imagesAct2 = [
+const round_3 = [
   {
     url: image_lions,
     title: "lions",
@@ -122,6 +125,22 @@ const imagesAct2 = [
   }
 ];
 
+const round_4 = [
+  {
+    url: image_cheese,
+    title: "cheese",
+    width: "30%"
+  },
+  {
+    url: image_trap,
+    title: "trap",
+    width: "30%"
+  }
+];
+
+const no_image = [];
+
+//const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
 function AppChoice(props) {
   const { classes } = props;
 
@@ -129,17 +148,23 @@ function AppChoice(props) {
 
   useEffect(() => {
     setInterval(async () => {
-      axios.get("http://localhost:3001/api/options").then(Response => {
+      axios.get("http://" + server.ip + ":3001/api/options").then(Response => {
         console.log(Response.data);
         switch (Response.data) {
-          case "not_started":
-            setActImages(not_started);
+          case "round_1":
+            setActImages(round_1);
             break;
-          case "act1":
-            setActImages(imagesAct1);
+          case "round_2":
+            setActImages(round_2);
             break;
-          case "act2":
-            setActImages(imagesAct2);
+          case "round_3":
+            setActImages(round_3);
+            break;
+          case "round_4":
+            setActImages(round_4);
+            break;
+          case "NULL":
+            setActImages(no_image);
             break;
         }
       });
@@ -148,6 +173,18 @@ function AppChoice(props) {
 
   return (
     <div className={classes.root}>
+      <Iframe
+        //url="https://www.youtube.com/embed/_HXdCe639is"
+        url="https://player.twitch.tv/?channel=splattercatgaming"
+        scrolling="no"
+        width="450px"
+        height="450px"
+        id="myId"
+        className="myClassname"
+        display="initial"
+        position="relative"
+        allowFullScreen
+      />
       {imageChoice.map(image => (
         <ButtonBase
           onClick={() => {
@@ -155,7 +192,10 @@ function AppChoice(props) {
 
             axios
               .post(
-                "http://localhost:3001/api/actions/action?action=" + image.title
+                "http://" +
+                  server.ip +
+                  ":3001/api/actions/action?action=" +
+                  image.title
               )
               .then(console.log("DONE"));
             //disable button and maybe higlight the button
