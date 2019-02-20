@@ -18,3 +18,6 @@ entre :
     "start_round_4"
 
 webapp-tequila
+
+
+to change the server ip, change it in frontend/src/public/server.js
