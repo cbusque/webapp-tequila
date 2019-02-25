@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import LayoutBody from "../components/LayoutBody";
 import Typography from "../components/Typography";
-import qrCode from "../../static/images/qr.png";
 
 const styles = theme => ({
   root: {

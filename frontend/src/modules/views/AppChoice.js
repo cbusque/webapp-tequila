@@ -148,7 +148,7 @@ function AppChoice(props) {
 
   useEffect(() => {
     setInterval(async () => {
-      axios.get("http://" + server.ip + ":3001/api/options").then(Response => {
+      axios.get(server.ip + ":3001/api/options").then(Response => {
         console.log(Response.data);
         switch (Response.data) {
           case "round_1":
@@ -165,6 +165,8 @@ function AppChoice(props) {
             break;
           case "NULL":
             setActImages(no_image);
+            break;
+          default:
             break;
         }
       });
