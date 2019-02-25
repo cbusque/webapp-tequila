@@ -6,10 +6,15 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
-import image_lions from "../../static/images/lion.jpg";
-import image_trap from "../../static/images/trap.png";
-import image_water from "../../static/images/water.png";
-import image_cheese from "../../static/images/cheese.png";
+import image_bouteille from "../../static/images/bouteille.png";
+import image_toxique from "../../static/images/toxique.png";
+import image_boule from "../../static/images/boule.png";
+import image_patte from "../../static/images/patte.png";
+import image_catapulte from "../../static/images/catapulte.png";
+import image_cheval from "../../static/images/cheval.png";
+import image_inondation from "../../static/images/inondation.png";
+import image_montagne from "../../static/images/montagne.png";
+import image_feu from "../../static/images/feu.png";
 
 import server from "../../public/server";
 
@@ -89,55 +94,77 @@ const styles = theme => ({
 
 const round_1 = [
   {
-    url: image_lions,
-    title: "lions",
+    url: image_bouteille,
+    title: "Morceau de Bouteille",
+    cmd: "bouteille",
     width: "100%"
   },
   {
-    url: image_water,
-    title: "water",
+    url: image_toxique,
+    title: "Flaque Toxique",
+    cmd: "toxique",
     width: "50%"
   }
 ];
 
 const round_2 = [
   {
-    url: image_lions,
-    title: "lions",
+    url: image_boule,
+    title: "Souris Dans Boule",
+    cmd: "boule",
     width: "50%"
   },
   {
-    url: image_cheese,
-    title: "cheese",
+    url: image_patte,
+    title: "Patte De Chat",
+    cmd: "patte",
     width: "50%"
   }
 ];
 const round_3 = [
   {
-    url: image_lions,
-    title: "lions",
+    url: image_catapulte,
+    title: "Catapulte",
+    cmd: "catapulte",
     width: "50%"
   },
   {
-    url: image_trap,
-    title: "trap",
+    url: image_cheval,
+    title: "Cheval De Bois",
+    cmd: "cheval",
     width: "50%"
   }
 ];
 
 const round_4 = [
   {
-    url: image_cheese,
-    title: "cheese",
+    url: image_inondation,
+    title: "Inondation",
+    cmd: "inondation",
     width: "50%"
   },
   {
-    url: image_trap,
-    title: "trap",
+    url: image_montagne,
+    title: "Plates Techtoniques",
+    cmd: "montagne",
     width: "50%"
   }
 ];
 
+const round_5 = [
+  {
+    url: image_montagne,
+    title: "Plates Techtoniques",
+    cmd: "montagne",
+    width: "50%"
+  },
+  {
+    url: image_feu,
+    title: "Huile Et Feu",
+    cmd: "feu",
+    width: "50%"
+  }
+];
 const no_image = [];
 
 //const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
@@ -162,6 +189,9 @@ function AppChoice(props) {
             break;
           case "round_4":
             setActImages(round_4);
+            break;
+          case "round_5":
+            setActImages(round_5);
             break;
           case "NULL":
             setActImages(no_image);

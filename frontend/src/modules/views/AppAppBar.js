@@ -31,10 +31,10 @@ function AppAppBar(props) {
   useEffect(() => {
     var localTimer = 0;
     //should be get timer
-    axios.get("http://" + server.ip + ":3001/api/options").then(Response => {
+    axios.get(server.ip + ":3001/api/options").then(Response => {
       setTimeout(() => setShowLoading(0.0));
-      setTimer(20);
-      localTimer = 20;
+      setTimer(60);
+      localTimer = 60;
     });
     var timerInterval = setInterval(async () => {
       localTimer = localTimer - 1;
