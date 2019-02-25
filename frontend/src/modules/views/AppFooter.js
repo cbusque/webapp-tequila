@@ -14,8 +14,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.secondary.light
   },
   layoutBody: {
-    marginTop: theme.spacing.unit * 8,
-    marginBottom: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 4,
+    marginBottom: theme.spacing.unit * 4,
     display: "flex"
   },
   iconsWrapper: {
@@ -58,9 +58,9 @@ function AppFooter(props) {
     <Typography component="footer" className={classes.root}>
       <LayoutBody className={classes.layoutBody} width="large">
         <Grid container spacing={40}>
-          <Grid item xs={12} sm={12} md={4}>
+          {/* <Grid item xs={12} sm={12} md={4}>
             <img src={qrCode} alt="qrCode" />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={12} md={4}>
             <Grid
               container
@@ -69,7 +69,7 @@ function AppFooter(props) {
               spacing={16}
             >
               <Grid item>
-                Concours universitaire Ubisoft 2019 - Équipe Polytechnique 2
+                Concours Universitaire Ubisoft 2019 - Équipe Polytechnique 2
               </Grid>
             </Grid>
           </Grid>

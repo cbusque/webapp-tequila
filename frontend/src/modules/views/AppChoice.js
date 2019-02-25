@@ -17,15 +17,15 @@ const styles = theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    minWidth: 300,
-    width: "100%"
+    minWidth: 0,
+    width: "100% !important"
   },
   image: {
     position: "relative",
-    height: 200,
+    height: 500,
     [theme.breakpoints.down("xs")]: {
-      width: "100% !important", // Overrides inline-style
-      height: 200
+      width: "50% !important", // Overrides inline-style
+      height: 250
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,
@@ -82,7 +82,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.common.white,
     position: "absolute",
     bottom: -2,
-    left: "calc(50% - 9px)",
+    //left: "calc(50% - 9px)",
     transition: theme.transitions.create("opacity")
   }
 });
@@ -91,12 +91,12 @@ const round_1 = [
   {
     url: image_lions,
     title: "lions",
-    width: "20%"
+    width: "100%"
   },
   {
     url: image_water,
     title: "water",
-    width: "30%"
+    width: "50%"
   }
 ];
 
@@ -104,24 +104,24 @@ const round_2 = [
   {
     url: image_lions,
     title: "lions",
-    width: "30%"
+    width: "50%"
   },
   {
     url: image_cheese,
     title: "cheese",
-    width: "30%"
+    width: "50%"
   }
 ];
 const round_3 = [
   {
     url: image_lions,
     title: "lions",
-    width: "30%"
+    width: "50%"
   },
   {
     url: image_trap,
     title: "trap",
-    width: "30%"
+    width: "50%"
   }
 ];
 
@@ -129,12 +129,12 @@ const round_4 = [
   {
     url: image_cheese,
     title: "cheese",
-    width: "30%"
+    width: "50%"
   },
   {
     url: image_trap,
     title: "trap",
-    width: "30%"
+    width: "50%"
   }
 ];
 
@@ -175,10 +175,10 @@ function AppChoice(props) {
     <div className={classes.root}>
       <Iframe
         //url="https://www.youtube.com/embed/_HXdCe639is"
-        url="https://player.twitch.tv/?channel=splattercatgaming"
+        url="https://player.twitch.tv/?channel=cbusque"
         scrolling="no"
-        width="450px"
-        height="450px"
+        width="100% !important"
+        height="300px"
         id="myId"
         className="myClassname"
         display="initial"
