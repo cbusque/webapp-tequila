@@ -227,7 +227,7 @@ function AppChoice(props) {
                 "http://" +
                   server.ip +
                   ":3001/api/actions/action?action=" +
-                  image.title
+                  image.cmd
               )
               .then(console.log("DONE"));
             //disable button and maybe higlight the button

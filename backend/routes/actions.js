@@ -13,17 +13,41 @@ router.get("/:id", (req, res) => {
   var action = req.query.action;
   res.writeHead(200, { "Content-Type": "text/plain" });
   switch (action) {
-    case "lions":
-      res.end(gb.voteForLions.toString());
+    case "bouteille":
+      console.log("bouteille");
+      res.end(gb.voteForBouteille.toString());
       break;
-    case "water":
-      res.end(gb.voteForWater.toString());
+    case "toxique":
+      console.log("toxique");
+      res.end(gb.voteForToxique.toString());
       break;
-    case "cheese":
-      res.end(gb.voteForCheese.toString());
+    case "boule":
+      console.log("boule");
+      res.end(gb.voteForBoule.toString());
       break;
-    case "trap":
-      res.end(gb.voteForTrap.toString());
+    case "patte":
+      console.log("patte");
+      res.end(gb.voteForPatte.toString());
+      break;
+    case "catapulte":
+      console.log("catapulte");
+      res.end(gb.voteForCatapulte.toString());
+      break;
+    case "cheval":
+      console.log("cheval");
+      res.end(gb.voteForCheval.toString());
+      break;
+    case "inondation":
+      console.log("inondation");
+      res.end(gb.voteForInondation.toString());
+      break;
+    case "montagne":
+      console.log("montagne");
+      res.end(gb.voteForMontagne.toString());
+      break;
+    case "feu":
+      console.log("feu");
+      res.end(gb.voteForFeu.toString());
       break;
     default:
       console.log("invalid");
