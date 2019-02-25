@@ -223,12 +223,7 @@ function AppChoice(props) {
             console.log("onClick");
 
             axios
-              .post(
-                "http://" +
-                  server.ip +
-                  ":3001/api/actions/action?action=" +
-                  image.cmd
-              )
+              .post(server.ip + ":3001/api/actions/action?action=" + image.cmd)
               .then(console.log("DONE"));
             //disable button and maybe higlight the button
           }}
