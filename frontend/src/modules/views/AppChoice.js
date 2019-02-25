@@ -107,7 +107,7 @@ const round_1 = [
   }
 ];
 
-const round_2 = [
+const round_5 = [
   {
     url: image_boule,
     title: "Souris Dans Boule",
@@ -151,7 +151,7 @@ const round_4 = [
   }
 ];
 
-const round_5 = [
+const round_2 = [
   {
     url: image_montagne,
     title: "Plates Techtoniques",
@@ -167,12 +167,12 @@ const round_5 = [
 ];
 const no_image = [];
 
+var haveVote = false;
 //const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
 function AppChoice(props) {
   const { classes } = props;
 
   const [imageChoice, setActImages] = useState([]);
-
   useEffect(() => {
     setInterval(async () => {
       axios.get(server.ip + ":3001/api/options").then(Response => {
@@ -221,7 +221,6 @@ function AppChoice(props) {
         <ButtonBase
           onClick={() => {
             console.log("onClick");
-
             axios
               .post(server.ip + ":3001/api/actions/action?action=" + image.cmd)
               .then(console.log("DONE"));

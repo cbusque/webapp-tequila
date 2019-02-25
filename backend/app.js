@@ -233,6 +233,15 @@ app.get("/get_result", function(req, res) {
   ) {
     res.json({ customInt: 9 });
   } else res.json({ customInt: 0 });
+  globalVariable.voteForBouteille = 0;
+  globalVariable.voteForToxique = 0;
+  globalVariable.voteForBoule = 0;
+  globalVariable.voteForPatte = 0;
+  globalVariable.voteForCatapulte = 0;
+  globalVariable.voteForCheval = 0;
+  globalVariable.voteForInondation = 0;
+  globalVariable.voteForMontagne = 0;
+  globalVariable.voteForFeu = 0;
 });
 
 app.use("/api/actions", actions);
