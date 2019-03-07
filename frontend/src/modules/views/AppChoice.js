@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Iframe from "react-iframe";
 import PropTypes from "prop-types";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import ReactProgressMeter from 'react-progress-meter'
 import { withStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
@@ -25,6 +25,11 @@ const styles = theme => ({
     flexWrap: "wrap",
     minWidth: 0,
     width: "100% !important"
+  },
+  progressbarClass:{ 
+    width: "70%",
+    display: "flex",
+    marginLeft: '15%'
   },
   image: {
     position: "relative",
@@ -229,13 +234,16 @@ function AppChoice(props) {
 
   return (
     <div className={classes.root}>
-      <LinearProgress variant="determinate" value={completed} />
-      <br />
-      <LinearProgress
-        color="secondary"
-        variant="determinate"
-        value={completed}
-      />
+    <div class={classes.progressbarClass}>
+      <ReactProgressMeter 
+                currentProgress={10} 
+                showPercent={false}
+                show={true}
+                color="cyan" 
+                width="100%"
+
+        />
+        </div>
       <Iframe
         //url="https://www.youtube.com/embed/_HXdCe639is"
         url="https://player.twitch.tv/?channel=cbusque"
