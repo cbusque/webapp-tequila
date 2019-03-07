@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Iframe from "react-iframe";
 import PropTypes from "prop-types";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import { withStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
@@ -168,16 +169,29 @@ const round_2 = [
 const no_image = [];
 
 var haveVote = false;
+var currentState = "";
+var voteState = "";
 //const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
 function AppChoice(props) {
   const { classes } = props;
 
   const [imageChoice, setActImages] = useState([]);
+  const [completed, setCompleted] = React.useState(0);
+
+  function progress() {
+    if (completed === 100) {
+      setCompleted(0);
+    } else {
+      const diff = Math.random() * 10;
+      setCompleted(Math.min(completed + diff, 100));
+    }
+  }
+
   useEffect(() => {
     setInterval(async () => {
       axios.get(server.ip + ":3001/api/options").then(Response => {
-        console.log(Response.data);
-        switch (Response.data) {
+        currentState = Response.data.state;
+        switch (Response.data.state) {
           case "round_1":
             setActImages(round_1);
             break;
@@ -199,12 +213,29 @@ function AppChoice(props) {
           default:
             break;
         }
+        if (currentState === voteState) {
+          setActImages(no_image);
+        } else {
+          haveVote = false;
+          voteState = "";
+        }
       });
-    }, 5000);
+    }, 500);
+    const timer = setInterval(progress, 500);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return (
     <div className={classes.root}>
+      <LinearProgress variant="determinate" value={completed} />
+      <br />
+      <LinearProgress
+        color="secondary"
+        variant="determinate"
+        value={completed}
+      />
       <Iframe
         //url="https://www.youtube.com/embed/_HXdCe639is"
         url="https://player.twitch.tv/?channel=cbusque"
@@ -221,9 +252,15 @@ function AppChoice(props) {
         <ButtonBase
           onClick={() => {
             console.log("onClick");
-            axios
-              .post(server.ip + ":3001/api/actions/action?action=" + image.cmd)
-              .then(console.log("DONE"));
+            if (!haveVote) {
+              axios
+                .post(
+                  server.ip + ":3001/api/actions/action?action=" + image.cmd
+                )
+                .then(console.log("DONE"));
+              haveVote = true;
+              voteState = currentState;
+            }
             //disable button and maybe higlight the button
           }}
           focusRipple

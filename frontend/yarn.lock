@@ -8457,6 +8457,13 @@ react@^16.8.0-alpha.1:
     prop-types "^15.6.2"
     scheduler "^0.13.1"
 
+reactjs-progressbar-linear@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/reactjs-progressbar-linear/-/reactjs-progressbar-linear-1.0.3.tgz#049789e64bb1eb626219b7c152e6b7d9298adf7f"
+  integrity sha512-x9hvlXIjCzwadTzlgfVM0yvIStW8UbCEEakDGhsaD3g4LZxavTGyQGDERT+JrtQ2vrN2qufktPQd9HZ5ws4KFw==
+  dependencies:
+    "@material-ui/core" "^3.9.2"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"
