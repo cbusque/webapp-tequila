@@ -12,41 +12,29 @@ router.get("/", (req, res) => {
 router.post("/:id", (req, res) => {
   var action = req.query.action;
   switch (action) {
-    case "bouteille":
-      gb.voteForBouteille++;
-      console.log("bouteille");
-      break;
-    case "toxique":
-      gb.voteForToxique++;
-      console.log("toxique");
-      break;
-    case "boule":
-      gb.voteForBoule++;
-      console.log("boule");
-      break;
-    case "patte":
-      gb.voteForPatte++;
-      console.log("patte");
-      break;
-    case "catapulte":
-      gb.voteForCatapulte++;
-      console.log("catapulte");
+    case "vitre":
+      gb.voteForVitre++;
+      console.log("vitre");
       break;
     case "cheval":
       gb.voteForCheval++;
       console.log("cheval");
       break;
-    case "inondation":
-      gb.voteForInondation++;
-      console.log("inondation");
+    case "feu":
+      gb.voteForFeu++;
+      console.log("feu");
+      break;
+    case "catapulte":
+      gb.voteForCatapulte++;
+      console.log("catapulte");
+      break;
+    case "bateau":
+      gb.voteForBateau++;
+      console.log("bateau");
       break;
     case "montagne":
       gb.voteForMontagne++;
       console.log("montagne");
-      break;
-    case "feu":
-      gb.voteForFeu++;
-      console.log("feu");
       break;
     default:
       console.log("invalid");
