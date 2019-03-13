@@ -28,12 +28,6 @@ const styles = theme => ({
   growingBar: {
     backgroundColor: "rgba(87, 202, 244, 0.6) !important"
   },
-  progressbarClass: {
-    // width: "60%",
-    // display: "flex",
-    marginLeft: "20%",
-    backgroundColor: "rgb(40, 40, 42);"
-  },
   allProgressBar: {
     width: "100% !important"
     // flexDirection: "row",
@@ -237,23 +231,20 @@ var voteState = "";
 //const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
 function AppChoice(props) {
   const { classes } = props;
+  var fadetmp = 0.0;
+  var isFading = false;
+  const [fadeButton, setfadeButton] = React.useState(fadetmp);
 
   const [imageChoice, setActImages] = useState([]);
   const [completed, setCompleted] = React.useState(50);
   const [showVoteBar, setshowVoteBar] = React.useState("none");
   const [showVoteButton, setshowVoteButton] = React.useState("flex");
+  const [userText, setuserText] = React.useState("");
 
   useEffect(() => {
     setInterval(async () => {
       axios.get(server.ip + ":3001/api/options").then(Response => {
         currentState = Response.data.state;
-        setshowVoteButton("flex");
-        if (haveVote) {
-          setshowVoteBar("flex");
-        } else {
-          setshowVoteBar("none");
-        }
-
         switch (Response.data.state) {
           case "round_1":
             setActImages(round_1);
@@ -353,9 +344,21 @@ function AppChoice(props) {
           case "NULL":
             setshowVoteButton("none");
             setCompleted(50);
+            setuserText("Bientot, une decision importante...");
             break;
           default:
             break;
+        }
+
+        if (haveVote) {
+          setshowVoteBar("flex");
+          setuserText("Quel sera le plus populaire?");
+        } else if (!haveVote && Response.data.state != "NULL") {
+          setuserText("faites un choix...");
+          setshowVoteButton("flex");
+          setshowVoteBar("none");
+        } else {
+          setshowVoteBar("none");
         }
         if (currentState === voteState) {
           setshowVoteButton("none");
@@ -365,6 +368,20 @@ function AppChoice(props) {
         }
       });
     }, 500);
+    setInterval(async () => {
+      if (isFading) {
+        fadetmp = fadetmp - 0.1;
+        if (fadetmp <= 0.1) {
+          isFading = false;
+        }
+      } else if (!isFading) {
+        fadetmp = fadetmp + 0.1;
+        if (fadetmp >= 1.0) {
+          isFading = true;
+        }
+      }
+      setfadeButton(fadetmp);
+    }, 50);
   }, []);
 
   return (
@@ -380,6 +397,15 @@ function AppChoice(props) {
         position="relative"
         allowFullScreen
       />
+      <Toolbar>
+        <Typography
+          variant="h6"
+          color="inherit"
+          style={{ margin: "auto", color: "white" }}
+        >
+          {userText}
+        </Typography>
+      </Toolbar>
       <Toolbar
         height="64px"
         style={{
@@ -459,6 +485,9 @@ function AppChoice(props) {
                 variant="subtitle1"
                 color="inherit"
                 className={classes.imageTitle}
+                style={{
+                  border: "4px solid rgba(255, 255, 255," + fadeButton + ")"
+                }}
               >
                 {image.title}
                 <span className={classes.imageMarked} />
