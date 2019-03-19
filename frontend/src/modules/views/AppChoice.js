@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ReactProgressMeter from "react-progress-meter";
 import Toolbar from "../components/Toolbar";
 import { withStyles } from "@material-ui/core/styles";
+import NextIcon from "@material-ui/icons/NavigateNext";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
@@ -16,6 +17,7 @@ import image_feu from "../../static/images/feu.png";
 import image_bateau from "../../static/images/feu.png";
 
 import server from "../../public/server";
+import "../../public/global";
 
 const styles = theme => ({
   root: {
@@ -228,11 +230,13 @@ const round_62 = [
 var haveVote = false;
 var currentState = "";
 var voteState = "";
+var player1 = global.isPlayer1;
 //const serv = "http://" + server.ip + ":8000/CreativeJam19.html";
 function AppChoice(props) {
   const { classes } = props;
   var fadetmp = 0.0;
   var isFading = false;
+
   const [fadeButton, setfadeButton] = React.useState(fadetmp);
 
   const [imageChoice, setActImages] = useState([]);
@@ -240,6 +244,9 @@ function AppChoice(props) {
   const [showVoteBar, setshowVoteBar] = React.useState("none");
   const [showVoteButton, setshowVoteButton] = React.useState("flex");
   const [userText, setuserText] = React.useState("");
+  const [urlPlayer, seturlPlayer] = React.useState(
+    "https://player.twitch.tv/?channel=cbusque"
+  );
 
   useEffect(() => {
     setInterval(async () => {
@@ -353,7 +360,7 @@ function AppChoice(props) {
         if (haveVote) {
           setshowVoteBar("flex");
           setuserText("Quel sera le plus populaire?");
-        } else if (!haveVote && Response.data.state != "NULL") {
+        } else if (!haveVote && Response.data.state !== "NULL") {
           setuserText("faites un choix...");
           setshowVoteButton("flex");
           setshowVoteBar("none");
@@ -381,13 +388,19 @@ function AppChoice(props) {
         }
       }
       setfadeButton(fadetmp);
+      player1 = global.isPlayer1;
+      if (player1) {
+        seturlPlayer("https://player.twitch.tv/?channel=cbusque");
+      } else {
+        seturlPlayer("https://player.twitch.tv/?channel=ninja");
+      }
     }, 50);
   }, []);
 
   return (
     <div style={{ backgroundColor: "rgb(40, 40, 42)" }}>
       <Iframe
-        url="https://player.twitch.tv/?channel=cbusque"
+        url={urlPlayer}
         scrolling="no"
         width="100% !important"
         height="300px"
@@ -405,6 +418,21 @@ function AppChoice(props) {
         >
           {userText}
         </Typography>
+
+        {/* <ButtonBase
+          style={{ margin: "auto", color: "white" }}
+          onClick={() => {
+            console.log("p1=" + player1);
+            if (player1) {
+              player1 = false;
+            } else {
+              player1 = true;
+            }
+            console.log("p1post=" + player1);
+          }}
+        >
+          <NextIcon />
+        </ButtonBase> */}
       </Toolbar>
       <Toolbar
         height="64px"
