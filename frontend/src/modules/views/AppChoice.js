@@ -108,9 +108,9 @@ const round_1 = [
     width: "50%"
   },
   {
-    url: image_cheval,
-    title: "Cheval",
-    cmd: "cheval",
+    url: image_feu,
+    title: "Feu",
+    cmd: "feu",
     width: "50%"
   }
 ];
@@ -130,48 +130,6 @@ const round_21 = [
 ];
 const round_22 = [
   {
-    url: image_catapulte,
-    title: "Catapulte",
-    cmd: "catapulte",
-    width: "50%"
-  },
-  {
-    url: image_cheval,
-    title: "Cheval",
-    cmd: "cheval",
-    width: "50%"
-  }
-];
-const round_3 = [
-  {
-    url: image_vitre,
-    title: "Morceau de vitre",
-    cmd: "vitre",
-    width: "50%"
-  },
-  {
-    url: image_feu,
-    title: "Feu",
-    cmd: "feu",
-    width: "50%"
-  }
-];
-const round_41 = [
-  {
-    url: image_vitre,
-    title: "Morceau de vitre",
-    cmd: "vitre",
-    width: "50%"
-  },
-  {
-    url: image_catapulte,
-    title: "Catapulte",
-    cmd: "catapulte",
-    width: "50%"
-  }
-];
-const round_42 = [
-  {
     url: image_feu,
     title: "Feu",
     cmd: "feu",
@@ -184,48 +142,90 @@ const round_42 = [
     width: "50%"
   }
 ];
-const round_5 = [
-  {
-    url: image_vitre,
-    title: "Morceau de vitre",
-    cmd: "vitre",
-    width: "50%"
-  },
-  {
-    url: image_bateau,
-    title: "Bateau",
-    cmd: "bateau",
-    width: "50%"
-  }
-];
-const round_61 = [
-  {
-    url: image_vitre,
-    title: "Morceau de vitre",
-    cmd: "vitre",
-    width: "50%"
-  },
-  {
-    url: image_montagne,
-    title: "Montagne",
-    cmd: "montagne",
-    width: "50%"
-  }
-];
-const round_62 = [
-  {
-    url: image_bateau,
-    title: "Bateau",
-    cmd: "bateau",
-    width: "50%"
-  },
-  {
-    url: image_montagne,
-    title: "Montagne",
-    cmd: "montagne",
-    width: "50%"
-  }
-];
+// const round_3 = [
+//   {
+//     url: image_vitre,
+//     title: "Morceau de vitre",
+//     cmd: "vitre",
+//     width: "50%"
+//   },
+//   {
+//     url: image_feu,
+//     title: "Feu",
+//     cmd: "feu",
+//     width: "50%"
+//   }
+// ];
+// const round_41 = [
+//   {
+//     url: image_vitre,
+//     title: "Morceau de vitre",
+//     cmd: "vitre",
+//     width: "50%"
+//   },
+//   {
+//     url: image_catapulte,
+//     title: "Catapulte",
+//     cmd: "catapulte",
+//     width: "50%"
+//   }
+// ];
+// const round_42 = [
+//   {
+//     url: image_feu,
+//     title: "Feu",
+//     cmd: "feu",
+//     width: "50%"
+//   },
+//   {
+//     url: image_catapulte,
+//     title: "Catapulte",
+//     cmd: "catapulte",
+//     width: "50%"
+//   }
+// ];
+// const round_5 = [
+//   {
+//     url: image_vitre,
+//     title: "Morceau de vitre",
+//     cmd: "vitre",
+//     width: "50%"
+//   },
+//   {
+//     url: image_feu,
+//     title: "Feu",
+//     cmd: "feu",
+//     width: "50%"
+//   }
+// ];
+// const round_61 = [
+//   {
+//     url: image_vitre,
+//     title: "Morceau de vitre",
+//     cmd: "vitre",
+//     width: "50%"
+//   },
+//   {
+//     url: image_catapulte,
+//     title: "Catapulte",
+//     cmd: "catapulte",
+//     width: "50%"
+//   }
+// ];
+// const round_62 = [
+//   {
+//     url: image_feu,
+//     title: "Feu",
+//     cmd: "feu",
+//     width: "50%"
+//   },
+//   {
+//     url: image_catapulte,
+//     title: "Catapulte",
+//     cmd: "catapulte",
+//     width: "50%"
+//   }
+// ];
 
 var haveVote = false;
 var currentState = "";
@@ -258,7 +258,7 @@ function AppChoice(props) {
             setCompleted(
               parseInt(
                 (Response.data.voteForVitre /
-                  (Response.data.voteForVitre + Response.data.voteForCheval)) *
+                  (Response.data.voteForVitre + Response.data.voteForFeu)) *
                   100
               )
             );
@@ -278,76 +278,75 @@ function AppChoice(props) {
             setActImages(round_22);
             setCompleted(
               parseInt(
-                (Response.data.voteForCatapulte /
-                  (Response.data.voteForCatapulte +
-                    Response.data.voteForCheval)) *
-                  100
-              )
-            );
-            break;
-          case "round_3":
-            setActImages(round_3);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre + Response.data.voteForFeu)) *
-                  100
-              )
-            );
-            break;
-          case "round_41":
-            setActImages(round_41);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre +
-                    Response.data.voteForCatapulte)) *
-                  100
-              )
-            );
-            break;
-          case "round_42":
-            setActImages(round_42);
-            setCompleted(
-              parseInt(
                 (Response.data.voteForFeu /
                   (Response.data.voteForFeu + Response.data.voteForCatapulte)) *
                   100
               )
             );
             break;
-          case "round_5":
-            setActImages(round_5);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre + Response.data.voteForBateau)) *
-                  100
-              )
-            );
-            break;
-          case "round_61":
-            setActImages(round_61);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre +
-                    Response.data.voteForMontagne)) *
-                  100
-              )
-            );
-            break;
-          case "round_62":
-            setActImages(round_62);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForBateau /
-                  (Response.data.voteForBateau +
-                    Response.data.voteForMontagne)) *
-                  100
-              )
-            );
-            break;
+          // case "round_3":
+          //   setActImages(round_3);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForVitre /
+          //         (Response.data.voteForVitre + Response.data.voteForFeu)) *
+          //         100
+          //     )
+          //   );
+          //   break;
+          // case "round_41":
+          //   setActImages(round_41);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForVitre /
+          //         (Response.data.voteForVitre +
+          //           Response.data.voteForCatapulte)) *
+          //         100
+          //     )
+          //   );
+          //   break;
+          // case "round_42":
+          //   setActImages(round_42);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForFeu /
+          //         (Response.data.voteForFeu + Response.data.voteForCatapulte)) *
+          //         100
+          //     )
+          //   );
+          //   break;
+          // case "round_5":
+          //   setActImages(round_5);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForVitre /
+          //         (Response.data.voteForVitre + Response.data.voteForBateau)) *
+          //         100
+          //     )
+          //   );
+          //   break;
+          // case "round_61":
+          //   setActImages(round_61);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForVitre /
+          //         (Response.data.voteForVitre +
+          //           Response.data.voteForMontagne)) *
+          //         100
+          //     )
+          //   );
+          //   break;
+          // case "round_62":
+          //   setActImages(round_62);
+          //   setCompleted(
+          //     parseInt(
+          //       (Response.data.voteForBateau /
+          //         (Response.data.voteForBateau +
+          //           Response.data.voteForMontagne)) *
+          //         100
+          //     )
+          //   );
+          //   break;
           case "NULL":
             setshowVoteButton("none");
             setCompleted(50);

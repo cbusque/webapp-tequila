@@ -69,10 +69,10 @@ app.get("/start_round_1", function(req, res) {
 
 app.get("/start_round_2", function(req, res) {
   console.log("round 2");
-  if (globalVariable.lastWinner === "cheval") {
-    globalVariable.currentState = "round_21";
-  } else {
+  if (globalVariable.lastWinner === "vitre") {
     globalVariable.currentState = "round_22";
+  } else {
+    globalVariable.currentState = "round_21";
   }
   globalVariable.voteForCheval = 0;
   globalVariable.voteForVitre = 0;

@@ -54,7 +54,7 @@ function AppAppBar(props) {
           <CheeseburgerMenua />
 
           <Typography variant="h6" color="inherit" className={classes.left}>
-            Téquila
+            Festum
           </Typography>
           <ReactCountdownClock
             seconds={timer}

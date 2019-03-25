@@ -68,7 +68,7 @@ function AppFooter(props) {
               spacing={16}
             >
               <Grid item>
-                Concours Universitaire Ubisoft 2019 - Équipe Polytechnique 2
+                Concours Universitaire Ubisoft 2019 - Équipe Festum
               </Grid>
             </Grid>
           </Grid>
