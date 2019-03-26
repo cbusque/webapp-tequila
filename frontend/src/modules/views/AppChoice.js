@@ -4,17 +4,13 @@ import PropTypes from "prop-types";
 import ReactProgressMeter from "react-progress-meter";
 import Toolbar from "../components/Toolbar";
 import { withStyles } from "@material-ui/core/styles";
-import NextIcon from "@material-ui/icons/NavigateNext";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
 import image_vitre from "../../static/images/bouteille.png";
 import image_catapulte from "../../static/images/catapulte.png";
-import image_cheval from "../../static/images/cheval.png";
-import image_montagne from "../../static/images/montagne.png";
 import image_feu from "../../static/images/feu.png";
-import image_bateau from "../../static/images/feu.png";
 
 import server from "../../public/server";
 import "../../public/global";

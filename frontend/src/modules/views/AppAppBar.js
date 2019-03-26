@@ -56,7 +56,7 @@ function AppAppBar(props) {
           <Typography variant="h6" color="inherit" className={classes.left}>
             Festum
           </Typography>
-          <ReactCountdownClock
+          {/* <ReactCountdownClock
             seconds={timer}
             color="#fff5f8"
             alpha={showLoading}
@@ -64,7 +64,7 @@ function AppAppBar(props) {
             onComplete={() => {
               console.log("timer finished");
             }}
-          />
+          /> */}
         </Toolbar>
       </AppBar>
     </div>

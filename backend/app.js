@@ -143,15 +143,6 @@ app.get("/get_result", function(req, res) {
   console.log("getting result");
   globalVariable.currentState = "NULL";
   if (
-    globalVariable.voteForCheval >= globalVariable.voteForVitre &&
-    globalVariable.voteForCheval >= globalVariable.voteForFeu &&
-    globalVariable.voteForCheval >= globalVariable.voteForCatapulte &&
-    globalVariable.voteForCheval >= globalVariable.voteForBateau &&
-    globalVariable.voteForCheval >= globalVariable.voteForMontagne
-  ) {
-    globalVariable.lastWinner = "cheval";
-    res.json({ customInt: 1 });
-  } else if (
     globalVariable.voteForVitre >= globalVariable.voteForCheval &&
     globalVariable.voteForVitre >= globalVariable.voteForFeu &&
     globalVariable.voteForVitre >= globalVariable.voteForCatapulte &&
