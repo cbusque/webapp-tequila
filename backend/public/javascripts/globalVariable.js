@@ -23,6 +23,7 @@ var globalVariable = (function() {
   this.voteForMontagne = 0;
   //timer for each acts
   this.timer = 60;
+  this.pWinner = "";
 
   return this;
 })();

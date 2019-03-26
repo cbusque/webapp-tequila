@@ -351,8 +351,13 @@ function AppChoice(props) {
           default:
             break;
         }
-
-        if (haveVote) {
+        if (Response.data.pWinner === "player1") {
+          setshowVoteButton("none");
+          setuserText("Joueur 1 est le gagnant");
+        } else if (Response.data.pWinner === "player2") {
+          setshowVoteButton("none");
+          setuserText("Joueur 2 est le gagnant");
+        } else if (haveVote) {
           setshowVoteBar("flex");
           setuserText("Quel sera le plus populaire?");
         } else if (!haveVote && Response.data.state !== "NULL") {

@@ -56,6 +56,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/start_round_1", function(req, res) {
+  globalVariable.pWinner = "null";
   console.log("round 1");
   globalVariable.currentState = "round_1";
   globalVariable.voteForCheval = 0;
@@ -68,6 +69,7 @@ app.get("/start_round_1", function(req, res) {
 });
 
 app.get("/start_round_2", function(req, res) {
+  globalVariable.pWinner = "null";
   console.log("round 2");
   if (globalVariable.lastWinner === "vitre") {
     globalVariable.currentState = "round_22";
@@ -84,6 +86,7 @@ app.get("/start_round_2", function(req, res) {
 });
 
 app.get("/start_round_3", function(req, res) {
+  globalVariable.pWinner = "null";
   console.log("round 3");
   globalVariable.currentState = "round_3";
   globalVariable.voteForCheval = 0;
@@ -130,6 +133,28 @@ app.get("/start_round_6", function(req, res) {
   } else {
     globalVariable.currentState = "round_62";
   }
+  globalVariable.voteForCheval = 0;
+  globalVariable.voteForVitre = 0;
+  globalVariable.voteForFeu = 0;
+  globalVariable.voteForCatapulte = 0;
+  globalVariable.voteForBateau = 0;
+  globalVariable.voteForMontagne = 0;
+  res.json({ customInt: 0 });
+});
+
+app.get("/player1", function(req, res) {
+  globalVariable.pWinner = "player1";
+  globalVariable.voteForCheval = 0;
+  globalVariable.voteForVitre = 0;
+  globalVariable.voteForFeu = 0;
+  globalVariable.voteForCatapulte = 0;
+  globalVariable.voteForBateau = 0;
+  globalVariable.voteForMontagne = 0;
+  res.json({ customInt: 0 });
+});
+
+app.get("/player2", function(req, res) {
+  globalVariable.pWinner = "player2";
   globalVariable.voteForCheval = 0;
   globalVariable.voteForVitre = 0;
   globalVariable.voteForFeu = 0;

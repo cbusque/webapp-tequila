@@ -14,7 +14,8 @@ router.get("/", (req, res) => {
     voteForFeu: gb.voteForFeu,
     voteForCatapulte: gb.voteForCatapulte,
     voteForBateau: gb.voteForBateau,
-    voteForMontagne: gb.voteForMontagne
+    voteForMontagne: gb.voteForMontagne,
+    pWinner: gb.pWinner
   });
 });
 
