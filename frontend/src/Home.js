@@ -10,7 +10,7 @@ function Index() {
     <React.Fragment>
       <AppAppBar />
       <AppChoice disabled={false} />
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }

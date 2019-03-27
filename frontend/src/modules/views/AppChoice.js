@@ -8,9 +8,12 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 
+import Popup from "reactjs-popup";
+
 import image_vitre from "../../static/images/bouteille.png";
 import image_catapulte from "../../static/images/catapulte.png";
 import image_feu from "../../static/images/feu.png";
+import image_vote from "../../static/images/vote.png";
 
 import server from "../../public/server";
 import "../../public/global";
@@ -224,6 +227,7 @@ const round_22 = [
 // ];
 
 var haveVote = false;
+var showPopUpOnce = false;
 var currentState = "";
 var voteState = "";
 var player1 = global.isPlayer1;
@@ -240,6 +244,7 @@ function AppChoice(props) {
   const [showVoteBar, setshowVoteBar] = React.useState("none");
   const [showVoteButton, setshowVoteButton] = React.useState("flex");
   const [userText, setuserText] = React.useState("");
+  const [isVoteTime, setisVoteTime] = React.useState(false);
   const [urlPlayer, seturlPlayer] = React.useState(
     "https://player.twitch.tv/?channel=cbusque"
   );
@@ -250,6 +255,10 @@ function AppChoice(props) {
         currentState = Response.data.state;
         switch (Response.data.state) {
           case "round_1":
+            if (!showPopUpOnce) {
+              setisVoteTime(true);
+              showPopUpOnce = true;
+            }
             setActImages(round_1);
             setCompleted(
               parseInt(
@@ -260,6 +269,10 @@ function AppChoice(props) {
             );
             break;
           case "round_21":
+            if (!showPopUpOnce) {
+              setisVoteTime(true);
+              showPopUpOnce = true;
+            }
             setActImages(round_21);
             setCompleted(
               parseInt(
@@ -271,6 +284,10 @@ function AppChoice(props) {
             );
             break;
           case "round_22":
+            if (!showPopUpOnce) {
+              setisVoteTime(true);
+              showPopUpOnce = true;
+            }
             setActImages(round_22);
             setCompleted(
               parseInt(
@@ -344,6 +361,7 @@ function AppChoice(props) {
           //   );
           //   break;
           case "NULL":
+            showPopUpOnce = false;
             setshowVoteButton("none");
             setCompleted(50);
             setuserText("Bientot, une decision importante...");
@@ -392,13 +410,24 @@ function AppChoice(props) {
       if (player1) {
         seturlPlayer("https://player.twitch.tv/?channel=cbusque");
       } else {
-        seturlPlayer("https://player.twitch.tv/?channel=ninja");
+        seturlPlayer("https://player.twitch.tv/?channel=festumplayer1");
       }
     }, 50);
   }, []);
 
   return (
     <div style={{ backgroundColor: "rgb(40, 40, 42)" }}>
+      <Popup
+        open={isVoteTime}
+        modal
+        closeOnDocumentClick
+        contentStyle={{ width: "25%" }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <p>ALLER VOTER !</p>
+          <img src={image_vote} height="64px" />
+        </div>
+      </Popup>
       <Iframe
         url={urlPlayer}
         scrolling="no"
