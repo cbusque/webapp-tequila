@@ -102,13 +102,13 @@ const styles = theme => ({
 const round_1 = [
   {
     url: image_vitre,
-    title: "Morceau de vitre",
+    title: "Glass",
     cmd: "vitre",
     width: "50%"
   },
   {
     url: image_feu,
-    title: "Feu",
+    title: "Fire",
     cmd: "feu",
     width: "50%"
   }
@@ -116,13 +116,13 @@ const round_1 = [
 const round_21 = [
   {
     url: image_vitre,
-    title: "Morceau de vitre",
+    title: "Glass",
     cmd: "vitre",
     width: "50%"
   },
   {
     url: image_catapulte,
-    title: "Catapulte",
+    title: "Catapult",
     cmd: "catapulte",
     width: "50%"
   }
@@ -130,13 +130,13 @@ const round_21 = [
 const round_22 = [
   {
     url: image_feu,
-    title: "Feu",
+    title: "Fire",
     cmd: "feu",
     width: "50%"
   },
   {
     url: image_catapulte,
-    title: "Catapulte",
+    title: "Catapult",
     cmd: "catapulte",
     width: "50%"
   }
@@ -365,22 +365,22 @@ function AppChoice(props) {
             setisVoteTime(false);
             setshowVoteButton("none");
             setCompleted(50);
-            setuserText("Bientot, une decision importante...");
+            setuserText("Soon, an important decision...");
             break;
           default:
             break;
         }
         if (Response.data.pWinner === "player1") {
           setshowVoteButton("none");
-          setuserText("Joueur 1 est le gagnant");
+          setuserText("Player 1 win");
         } else if (Response.data.pWinner === "player2") {
           setshowVoteButton("none");
-          setuserText("Joueur 2 est le gagnant");
+          setuserText("Player 2 win");
         } else if (haveVote) {
           setshowVoteBar("flex");
-          setuserText("Quel sera le plus populaire?");
+          setuserText("Which will be more popular?");
         } else if (!haveVote && Response.data.state !== "NULL") {
-          setuserText("faites un choix...");
+          setuserText("Make a choice...");
           setshowVoteButton("flex");
           setshowVoteBar("none");
         } else {
@@ -422,10 +422,10 @@ function AppChoice(props) {
         open={isVoteTime}
         modal
         closeOnDocumentClick
-        contentStyle={{ width: "25%" }}
+        contentStyle={{ width: "25%", backgroundColor: "rgb(40, 40, 42)" }}
       >
         <div style={{ textAlign: "center" }}>
-          <p>ALLER VOTER !</p>
+          <p>GO VOTE !</p>
           <img src={image_vote} height="64px" />
         </div>
       </Popup>

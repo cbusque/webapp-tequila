@@ -172,7 +172,8 @@ app.get("/get_result", function(req, res) {
     globalVariable.voteForVitre >= globalVariable.voteForFeu &&
     globalVariable.voteForVitre >= globalVariable.voteForCatapulte &&
     globalVariable.voteForVitre >= globalVariable.voteForBateau &&
-    globalVariable.voteForVitre >= globalVariable.voteForMontagne
+    globalVariable.voteForVitre >= globalVariable.voteForMontagne &&
+    globalVariable.lastWinner != "vitre"
   ) {
     globalVariable.lastWinner = "vitre";
     res.json({ customInt: 2 });
@@ -181,7 +182,8 @@ app.get("/get_result", function(req, res) {
     globalVariable.voteForFeu >= globalVariable.voteForCheval &&
     globalVariable.voteForFeu >= globalVariable.voteForCatapulte &&
     globalVariable.voteForFeu >= globalVariable.voteForBateau &&
-    globalVariable.voteForFeu >= globalVariable.voteForMontagne
+    globalVariable.voteForFeu >= globalVariable.voteForMontagne &&
+    globalVariable.lastWinner != "feu"
   ) {
     globalVariable.lastWinner = "feu";
     res.json({ customInt: 3 });
