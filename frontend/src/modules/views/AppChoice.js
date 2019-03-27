@@ -362,6 +362,7 @@ function AppChoice(props) {
           //   break;
           case "NULL":
             showPopUpOnce = false;
+            setisVoteTime(false);
             setshowVoteButton("none");
             setCompleted(50);
             setuserText("Bientot, une decision importante...");
