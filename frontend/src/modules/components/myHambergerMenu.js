@@ -52,7 +52,7 @@ class myHambergerMenu extends Component {
                   paddingLeft: "10px"
                 }}
               >
-                Regarder l'autre joueur
+                See other player
               </Typography>
             </a>
             <img src={qrCode} style={{ marginTop: "45px" }} />

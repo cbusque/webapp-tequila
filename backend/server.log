@@ -440,3 +440,4 @@ round 2
 [0mGET /api/options [36m304 [0m0.471 ms - -[0m
 [0mGET /api/options [36m304 [0m0.485 ms - -[0m
 [0mGET /api/options [36m304 [0m1.603 ms - -[0m
+[0mGET /start_game [0m- [0m- ms - -[0m
