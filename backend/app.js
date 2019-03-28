@@ -55,7 +55,7 @@ app.get("/", function(req, res) {
   res.json({ customInt: 5 });
 });
 
-app.get("/start_round_1", function(req, res) {
+app.get("/start_round_1_", function(req, res) {
   globalVariable.pWinner = "null";
   console.log("round 1");
   globalVariable.currentState = "round_1";
@@ -68,7 +68,7 @@ app.get("/start_round_1", function(req, res) {
   res.json({ customInt: 0 });
 });
 
-app.get("/start_round_2", function(req, res) {
+app.get("/start_round_2_", function(req, res) {
   globalVariable.pWinner = "null";
   console.log("round 2");
   if (globalVariable.lastWinner === "vitre") {
@@ -85,7 +85,7 @@ app.get("/start_round_2", function(req, res) {
   res.json({ customInt: 0 });
 });
 
-app.get("/start_round_3", function(req, res) {
+app.get("/start_round_3_", function(req, res) {
   globalVariable.pWinner = "null";
   console.log("round 3");
   globalVariable.currentState = "round_3";
@@ -164,7 +164,15 @@ app.get("/player2", function(req, res) {
   res.json({ customInt: 0 });
 });
 
-app.get("/get_result", function(req, res) {
+app.get("/start_game", function(req, res) {
+	  globalVariable.currentState = "NULL";
+	  globalVariable.voteForVitre = 0;
+	  globalVariable.voteForFeu = 0;
+	  globalVariable.voteForCatapulte = 0;
+	  globalVariable.lastWinner = "NULL";
+});
+
+app.get("/get_result_", function(req, res) {
   console.log("getting result");
   globalVariable.currentState = "NULL";
   if (
