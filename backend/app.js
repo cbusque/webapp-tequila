@@ -170,6 +170,7 @@ app.get("/start_game", function(req, res) {
 	  globalVariable.voteForFeu = 0;
 	  globalVariable.voteForCatapulte = 0;
 	  globalVariable.lastWinner = "NULL";
+	  res.json({ customInt: 0 });
 });
 
 app.get("/get_result_", function(req, res) {
