@@ -260,13 +260,17 @@ function AppChoice(props) {
               showPopUpOnce = true;
             }
             setActImages(round_1);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre + Response.data.voteForFeu)) *
-                  100
-              )
+            var result = parseInt(
+              (Response.data.voteForVitre /
+                (Response.data.voteForVitre + Response.data.voteForFeu)) *
+                100
             );
+            if (result == 100) {
+              result = 90;
+            } else if (result == 0) {
+              result = 10;
+            }
+            setCompleted(result);
             break;
           case "round_21":
             if (!showPopUpOnce) {
@@ -274,14 +278,17 @@ function AppChoice(props) {
               showPopUpOnce = true;
             }
             setActImages(round_21);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForVitre /
-                  (Response.data.voteForVitre +
-                    Response.data.voteForCatapulte)) *
-                  100
-              )
+            var result = parseInt(
+              (Response.data.voteForVitre /
+                (Response.data.voteForVitre + Response.data.voteForCatapulte)) *
+                100
             );
+            if (result == 100) {
+              result = 90;
+            } else if (result == 0) {
+              result = 10;
+            }
+            setCompleted(result);
             break;
           case "round_22":
             if (!showPopUpOnce) {
@@ -289,13 +296,17 @@ function AppChoice(props) {
               showPopUpOnce = true;
             }
             setActImages(round_22);
-            setCompleted(
-              parseInt(
-                (Response.data.voteForFeu /
-                  (Response.data.voteForFeu + Response.data.voteForCatapulte)) *
-                  100
-              )
+            var result = parseInt(
+              (Response.data.voteForFeu /
+                (Response.data.voteForFeu + Response.data.voteForCatapulte)) *
+                100
             );
+            if (result == 100) {
+              result = 90;
+            } else if (result == 0) {
+              result = 10;
+            }
+            setCompleted(result);
             break;
           // case "round_3":
           //   setActImages(round_3);
@@ -422,11 +433,12 @@ function AppChoice(props) {
         open={isVoteTime}
         modal
         closeOnDocumentClick
-        contentStyle={{ width: "25%", backgroundColor: "rgb(40, 40, 42)" }}
+        contentStyle={{
+          backgroundColor: "rgb(40, 40, 42)"
+        }}
       >
         <div style={{ textAlign: "center" }}>
-          <p>GO VOTE !</p>
-          <img src={image_vote} height="64px" />
+          <img src={image_vote} height="100%" width="100%" />
         </div>
       </Popup>
       <Iframe
